@@ -1,0 +1,16 @@
+#!/bin/bash
+TARGET=$1
+bold=`tput bold` 
+offbold=`tput rmso`
+
+function usage() {
+    echo "Usage: ${bold}dist <build profile>${offbold}"
+    echo "Example, building for production: ${bold}dist prod${offbold}"
+}
+
+if [ "$TARGET" != "" ] 
+then
+    mvn clean install p:assemble-dist -DtargetEnv=$TARGET
+else
+    usage
+fi
